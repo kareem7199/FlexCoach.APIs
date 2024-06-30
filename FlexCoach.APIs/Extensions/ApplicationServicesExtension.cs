@@ -7,6 +7,7 @@ using FlexCoach.Core.Services.Contract;
 using FlexCoach.Repository;
 using FlexCoach.Service.AuthService;
 using FlexCoach.Service.HashService;
+using FlexCoach.Service.ImageUploadService;
 using FlexCoach.Service.LoginService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -19,6 +20,8 @@ namespace FlexCoach.APIs.Extensions
 	{
 		public static IServiceCollection AddApplicationServices(this IServiceCollection services)
 		{
+
+			services.AddScoped(typeof(IImageUploadService), typeof(ImageUploadService));
 
 			services.AddScoped<ExceptionMiddleware>();
 

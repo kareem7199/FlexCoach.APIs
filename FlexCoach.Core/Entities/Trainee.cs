@@ -8,6 +8,5 @@ namespace FlexCoach.Core.Entities
 {
 	public class Trainee : Account
 	{
-        public string TraineeInfo { get; set; }
     }
 }

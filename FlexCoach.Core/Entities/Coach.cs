@@ -8,6 +8,8 @@ namespace FlexCoach.Core.Entities
 {
 	public class Coach : Account
 	{
-        public string CoachInfo { get; set; }
+		public string AboutMe { get; set; }
+		public int Experience { get; set; }
+		ICollection<Certification> Certifications { get; set; } = new HashSet<Certification>();
     }
 }

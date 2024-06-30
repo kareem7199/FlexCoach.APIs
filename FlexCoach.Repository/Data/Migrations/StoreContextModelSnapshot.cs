@@ -29,11 +29,11 @@ namespace FlexCoach.Repository.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("AdminInfo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Gender")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -45,9 +45,38 @@ namespace FlexCoach.Repository.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("PictureUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("Email")
+                        .IsUnique();
+
                     b.ToTable("Admins");
+                });
+
+            modelBuilder.Entity("FlexCoach.Core.Entities.Certification", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CertificateUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CoachId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CoachId");
+
+                    b.ToTable("Certifications");
                 });
 
             modelBuilder.Entity("FlexCoach.Core.Entities.Coach", b =>
@@ -58,11 +87,18 @@ namespace FlexCoach.Repository.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("CoachInfo")
+                    b.Property<string>("AboutMe")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Experience")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Gender")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -74,7 +110,14 @@ namespace FlexCoach.Repository.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("PictureUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
 
                     b.ToTable("Coaches");
                 });
@@ -91,6 +134,10 @@ namespace FlexCoach.Repository.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -99,7 +146,7 @@ namespace FlexCoach.Repository.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("TraineeInfo")
+                    b.Property<string>("PictureUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -109,6 +156,17 @@ namespace FlexCoach.Repository.Data.Migrations
                         .IsUnique();
 
                     b.ToTable("Trainees");
+                });
+
+            modelBuilder.Entity("FlexCoach.Core.Entities.Certification", b =>
+                {
+                    b.HasOne("FlexCoach.Core.Entities.Coach", "Coach")
+                        .WithMany()
+                        .HasForeignKey("CoachId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Coach");
                 });
 #pragma warning restore 612, 618
         }

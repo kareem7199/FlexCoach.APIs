@@ -20,4 +20,8 @@
     <ProjectReference Include="..\FlexCoach.Service\FlexCoach.Service.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
 </Project>

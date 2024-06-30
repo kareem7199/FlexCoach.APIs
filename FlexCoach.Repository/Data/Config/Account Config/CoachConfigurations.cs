@@ -9,17 +9,17 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace FlexCoach.Repository.Data.Config.Account_Config
 {
-	internal class TraineeConfigurations : IEntityTypeConfiguration<Trainee>
+	internal class CoachConfigurations : IEntityTypeConfiguration<Coach>
 	{
-		public void Configure(EntityTypeBuilder<Trainee> builder)
+		public void Configure(EntityTypeBuilder<Coach> builder)
 		{
-			builder.HasIndex(T => T.Email)
+			builder.HasIndex(C => C.Email)
 				   .IsUnique();
 
-			builder.Property(T => T.Gender)
+			builder.Property(C => C.Gender)
 				   .HasConversion(
-					(TGender) => TGender.ToString(),
-					(TGender) => (Gender)Enum.Parse(typeof(Gender), TGender)
+					(CGender) => CGender.ToString(),
+					(CGender) => (Gender)Enum.Parse(typeof(Gender), CGender)
 					);
 		}
 	}

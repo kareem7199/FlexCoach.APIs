@@ -12,16 +12,13 @@ namespace FlexCoach.Service.LoginService
 	public class AccountService : IAccountService
 	{
 		private readonly IUnitOfWork _unitOfWork;
-		private readonly IAuthService _authService;
 		private readonly IHashService _hashService;
 
 		public AccountService(
 			IUnitOfWork unitOfWork,
-			IAuthService authService,
 			IHashService hashService)
 		{
 			_unitOfWork = unitOfWork;
-			_authService = authService;
 			_hashService = hashService;
 		}
 
