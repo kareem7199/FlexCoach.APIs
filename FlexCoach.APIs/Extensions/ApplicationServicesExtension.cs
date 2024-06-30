@@ -6,6 +6,7 @@ using FlexCoach.Core;
 using FlexCoach.Core.Services.Contract;
 using FlexCoach.Repository;
 using FlexCoach.Service.AuthService;
+using FlexCoach.Service.CoachService;
 using FlexCoach.Service.HashService;
 using FlexCoach.Service.ImageUploadService;
 using FlexCoach.Service.LoginService;
@@ -21,7 +22,9 @@ namespace FlexCoach.APIs.Extensions
 		public static IServiceCollection AddApplicationServices(this IServiceCollection services)
 		{
 
-			services.AddScoped(typeof(IImageUploadService), typeof(ImageUploadService));
+			services.AddScoped(typeof(IUploadService), typeof(UploadService));
+
+			services.AddScoped(typeof(ICoachService), typeof(CoachService));
 
 			services.AddScoped<ExceptionMiddleware>();
 

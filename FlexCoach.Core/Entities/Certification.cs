@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace FlexCoach.Core.Entities
 {
-	public class Certification
+	public class Certification : BaseEntity
 	{
-        public int Id { get; set; }
         public string CertificateUrl { get; set; }
         public int CoachId { get; set; }
 

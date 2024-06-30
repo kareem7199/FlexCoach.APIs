@@ -7,8 +7,9 @@ using Microsoft.AspNetCore.Http;
 
 namespace FlexCoach.Core.Services.Contract
 {
-	public interface IImageUploadService
+	public interface IUploadService
 	{
 		public Task<string> UploadFile(IFormFile file, string folderName);
+		public Task<string> UploadPdf(IFormFile file, string folderName);
 	}
 }

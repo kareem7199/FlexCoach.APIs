@@ -16,25 +16,25 @@ namespace FlexCoach.APIs.Controllers
 		private readonly IAuthService _authService;
 		private readonly IAccountService _accountService;
 		private readonly IMapper _mapper;
-		private readonly IImageUploadService _imageUploadService;
+		private readonly IUploadService _UploadService;
 
 		public AccountController(
 			IAuthService authService,
 			IAccountService accountService,
 			IMapper mapper,
-			IImageUploadService imageUploadService
+			IUploadService uploadService
 			)
 		{
 			_authService = authService;
 			_accountService = accountService;
 			_mapper = mapper;
-			_imageUploadService = imageUploadService;
+			_UploadService = uploadService;
 		}
 
 		[HttpPost("Trainee/Register")]
 		public async Task<ActionResult> RegisterTrainee(TraineeRegisterDto traineeRegisterDto)
 		{
-			var profilePictureUrl = await _imageUploadService.UploadFile(traineeRegisterDto.Picture, "profilePictures");
+			var profilePictureUrl = await _UploadService.UploadFile(traineeRegisterDto.Picture, "profilePictures");
 
 			var trainee = _mapper.Map<Trainee>(traineeRegisterDto);
 			trainee.PictureUrl = profilePictureUrl;
@@ -56,7 +56,7 @@ namespace FlexCoach.APIs.Controllers
 		[HttpPost("Coach/Register")]
 		public async Task<ActionResult> RegisterCoach(CoachRegisterDto coachRegisterDto)
 		{
-			var profilePictureUrl = await _imageUploadService.UploadFile(coachRegisterDto.Picture, "profilePictures");
+			var profilePictureUrl = await _UploadService.UploadFile(coachRegisterDto.Picture, "profilePictures");
 
 			var coach = _mapper.Map<Coach>(coachRegisterDto);
 			coach.PictureUrl = profilePictureUrl;
