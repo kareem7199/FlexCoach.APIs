@@ -109,6 +109,23 @@ namespace FlexCoach.APIs.Controllers
 			return Ok(account);
 		}
 
+		[HttpPost("Admin/Login")]
+		public async Task<ActionResult<AccountDto>> LoginAdmin(LoginDto model)
+		{
+			var admin = await _accountService.LoginAsync<Admin>(model.Email, model.Password);
+
+			if (admin is null)
+				return Unauthorized(new ApiResponse(401, "invalid login"));
+
+			var token = await _authService.CreateTokenAsync(admin);
+
+			var account = _mapper.Map<AccountDto>(admin);
+			account.Token = token;
+			account.Role = "Admin";
+
+			return Ok(account);
+		}
+
 
 
 	}
