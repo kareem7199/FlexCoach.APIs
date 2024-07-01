@@ -11,5 +11,6 @@ namespace FlexCoach.Core.Entities
 		public string AboutMe { get; set; }
 		public int Experience { get; set; }
 		public ICollection<Certification> Certifications { get; set; } = new HashSet<Certification>();
+        public ICollection<Plan> Plans { get; set; } = new HashSet<Plan>();
     }
 }

@@ -26,5 +26,6 @@ namespace FlexCoach.Repository.Data
 		public DbSet<Coach> Coaches { get; set; }
 		public DbSet<Trainee> Trainees { get; set; }
         public DbSet<Certification> Certifications { get; set; }
+        public DbSet<Plan> Plans { get; set; }
     }
 }
