@@ -6,10 +6,12 @@ using FlexCoach.Core;
 using FlexCoach.Core.Services.Contract;
 using FlexCoach.Repository;
 using FlexCoach.Service.AuthService;
+using FlexCoach.Service.CertificateService;
 using FlexCoach.Service.CoachService;
 using FlexCoach.Service.HashService;
 using FlexCoach.Service.ImageUploadService;
 using FlexCoach.Service.LoginService;
+using FlexCoach.Service.PlanService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -25,6 +27,8 @@ namespace FlexCoach.APIs.Extensions
 			services.AddScoped(typeof(IUploadService), typeof(UploadService));
 
 			services.AddScoped(typeof(ICoachService), typeof(CoachService));
+			services.AddScoped(typeof(ICertificateService), typeof(CertificateService));
+			services.AddScoped(typeof(IPlanService), typeof(PlanService));
 
 			services.AddScoped<ExceptionMiddleware>();
 

@@ -7,7 +7,9 @@ using FlexCoach.Core.Entities;
 
 namespace FlexCoach.Core.Services.Contract
 {
-	public interface ICoachService	
+	public interface IPlanService
 	{
+		public Task<Plan?> AddPlanAsync(Plan plan, string coachEmail);
+		public Task<Plan?> DeletePlanAsync(int planId, string coachEmail);
 	}
 }
