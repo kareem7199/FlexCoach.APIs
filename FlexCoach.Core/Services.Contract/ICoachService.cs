@@ -10,5 +10,6 @@ namespace FlexCoach.Core.Services.Contract
 	public interface ICoachService
 	{
 		public Task<Certification?> AddCertificate(string certificateUrl , string coachEmail);
+		public Task<Certification?> DeleteCertificate(int certificateId , string coachEmail);
 	}
 }

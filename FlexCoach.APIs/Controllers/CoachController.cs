@@ -45,7 +45,18 @@ namespace FlexCoach.APIs.Controllers
 			return Ok(_mapper.Map<CertificateToReturnDto>(result));
 		}
 
+		[HttpDelete("Certificate/{id}")]
+		[Authorize(Roles = "Coach")]
+		public async Task<ActionResult> DeleteCertificate(int id)
+		{
 
+			var coachEmail = User.FindFirst(ClaimTypes.Email).Value;
 
+			var result = await _coachService.DeleteCertificate(id , coachEmail);
+
+			if(result is null) return NotFound();
+
+			return Ok(_mapper.Map<CertificateToReturnDto>(result));
+		}
 	}
 }

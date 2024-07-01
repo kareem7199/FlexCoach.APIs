@@ -41,5 +41,26 @@ namespace FlexCoach.Service.CoachService
 
 			return certificate;
 		}
+
+		public async Task<Certification?> DeleteCertificate(int certificateId, string coachEmail)
+		{
+			var certificateRepo = _unitOfWork.Repository<Certification>();
+			var coachRepo = _unitOfWork.Repository<Coach>();
+
+			var spec = new AccountSpecifications<Coach>(coachEmail);
+			var coach = await coachRepo.GetWithSpecAsync(spec);
+
+			if(coach is null) return null;
+			
+			var certificate = await certificateRepo.GetAsync(certificateId);
+
+			if(certificate is null || (certificate.CoachId != coach.Id)) return null;
+
+			certificateRepo.Delete(certificate);
+
+			await _unitOfWork.CompleteAsync();
+
+			return certificate;
+		}
 	}
 }
