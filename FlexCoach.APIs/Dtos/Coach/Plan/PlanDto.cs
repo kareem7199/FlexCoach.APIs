@@ -13,5 +13,8 @@ namespace FlexCoach.APIs.Dtos.Coach.Plan
 		[Required]
 		[Range(30 , 365)]
 		public int Duration { get; set; }
-	}
+        [Required]
+		[Range (1 , 10000)]
+        public int Price { get; set; }
+    }
 }
